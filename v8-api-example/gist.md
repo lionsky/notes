@@ -1,11 +1,16 @@
 # Array API
+```
 Local<Array> ret = Array::New(isolate, 2);
+```
 
 # Local API
+```
 static void GetPromiseDetails(const FunctionCallbackInfo<Value>& args) {
   Local<Promise> promise = args[0].As<Promise>();
+```
 
 # FunctionCallbackInfo
+```
 static void GetPromiseDetails(const FunctionCallbackInfo<Value>& args) {
   auto isolate = args.GetIsolate();
   Local<Context> context = args.GetIsolate()->GetCurrentContext();
@@ -16,11 +21,15 @@ static void GetPromiseDetails(const FunctionCallbackInfo<Value>& args) {
   ret.Set(1, Integer::New(isolate, 1));
   args.GetReturnValue().Set(ret);
 }
+```
 
 # Interger API
+```
 Local<Number> one = Integer::New(isolate, 1);
+```
 
 # Bind method to object
+```
 inline void Environment::SetMethod(v8::Local<v8::Object> that,
                                    const char* name,
                                    v8::FunctionCallback callback) {
@@ -33,8 +42,10 @@ inline void Environment::SetMethod(v8::Local<v8::Object> that,
   that->Set(name_string, function);
   function->SetName(name_string);  // NODE_SET_METHOD() compatibility.
 }
+```
 
 # Bind method to class??
+```
 //that.prototype.name = callback
 inline void Environment::SetProtoMethod(v8::Local<v8::FunctionTemplate> that,
                                         const char* name,
@@ -48,6 +59,7 @@ inline void Environment::SetProtoMethod(v8::Local<v8::FunctionTemplate> that,
   that->PrototypeTemplate()->Set(name_string, t);
   t->SetClassName(name_string);  // NODE_SET_PROTOTYPE_METHOD() compatibility.
 }
+```
 
 # FunctionTemplate
 Used to create functions at runtime and only one function will be created from a FunctionTemplate in a context. The lifetime of the created function is equal to the lifetime of the context.
